@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+def androidId = rootProject.ext.androidId
+def appId = rootProject.ext.appId
+def support = rootProject.ext.dependencies
+
+android {
+    compileSdkVersion androidId.compileSdkVersion
+    buildToolsVersion androidId.buildToolsVersion
+    defaultConfig {
+        applicationId appId.app
+        minSdkVersion androidId.minSdkVersion
+        targetSdkVersion androidId.targetSdkVersion
+        versionCode androidId.versionCode
+        versionName androidId.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //这个方法接收三个非空参数，第一个：确定值的类型，第二个：指定key的名字，第三个：传值（必须是String）
+        //为什么需要定义这个？因为src代码中有可能用到跨模块交互，如果是组件化模块显然不行
+        //不能在Android根节点，只能在defaultConfig或buildType节点下
+        buildConfigField("boolean", "isRelease", String.valueOf(isRelease))
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //循环引入第三方库
+    support.each { k, v -> implementation v }
+    implementation project(':common')//公共基础库
+    implementation project(':arouter_annotation')
+    if (isRelease) {
+        implementation project(':order')
+        implementation project(':pesrsonal')
+    }
+
+}
