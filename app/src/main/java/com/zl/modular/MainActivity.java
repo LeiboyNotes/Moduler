@@ -4,25 +4,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.zl.annotation.ARouter;
+import com.zl.annotation.Parameter;
 import com.zl.annotation.module.RouterBean;
-import com.zl.api.ARouterLoadGroup;
-import com.zl.api.ARouterLoadPath;
+import com.zl.api.core.ARouterLoadGroup;
+import com.zl.api.core.ARouterLoadPath;
 import com.zl.modular.test.ARouter$$Group$$order;
 import com.zl.modular.test.ARouter$$Group$$personal;
 
 import java.util.Map;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 
 @ARouter(path = "/app/MainActivity")
 public class MainActivity extends AppCompatActivity {
+
+    @Parameter
+    String name;
+    @Parameter(name="efs")
+    int age = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        name = getIntent().getStringExtra("name");
+        age = getIntent().getIntExtra("age", age);
     }
 
     public void jumpOrder(View view) {

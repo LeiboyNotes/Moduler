@@ -70,6 +70,14 @@ public class RouterBean {
         return path;
     }
 
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
     public final static class Builder{
 
         //类节点
@@ -102,5 +110,13 @@ public class RouterBean {
             return new RouterBean(this);
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "RouterBean{" +
+                "group='" + group + '\'' +
+                ", path='" + path + '\'' +
+                '}';
     }
 }

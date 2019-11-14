@@ -4,9 +4,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.zl.annotation.ARouter;
 import com.zl.common.base.BaseActivity;
 import com.zl.common.utils.Cons;
-
+@ARouter(path = "/personal/Personal_MainActivity")
 public class Personal_MainActivity extends BaseActivity {
 
     @Override

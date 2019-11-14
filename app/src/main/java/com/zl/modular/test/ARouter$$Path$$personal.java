@@ -1,7 +1,7 @@
 package com.zl.modular.test;
 
 import com.zl.annotation.module.RouterBean;
-import com.zl.api.ARouterLoadPath;
+import com.zl.api.core.ARouterLoadPath;
 import com.zl.modular.pesrsonal.Personal_MainActivity;
 
 import java.util.HashMap;

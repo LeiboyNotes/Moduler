@@ -1,7 +1,7 @@
 package com.zl.modular.test;
 
-import com.zl.api.ARouterLoadGroup;
-import com.zl.api.ARouterLoadPath;
+import com.zl.api.core.ARouterLoadGroup;
+import com.zl.api.core.ARouterLoadPath;
 
 import java.util.HashMap;
 import java.util.Map;
